@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#fff8f2">
+  <title>Our Wedding | A Celebration of Love</title>
+  <meta name="description" content="Join us to celebrate our wedding. Explore our story, wedding events, venue and RSVP.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --cream: #fff8f2;
+      --pink: #f3d9d4;
+      --rose: #b66d70;
+      --green: #65755b;
+      --ink: #493b38;
+      --gold: #b99a65;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      background: var(--cream);
+      color: var(--ink);
+      font-family: "DM Sans", sans-serif;
+      line-height: 1.7;
+    }
+
+    h1, h2, h3 {
+      font-family: "Playfair Display", serif;
+      font-weight: 400;
+      line-height: 1.2;
+    }
+
+    h1 { font-size: clamp(3rem, 8vw, 6.5rem); }
+    h2 { font-size: clamp(2rem, 5vw, 3.5rem); }
+    p { color: #766661; }
+
+    a { color: inherit; }
+
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      padding: 18px 7%;
+      background: rgba(255, 248, 242, .96);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      border-bottom: 1px solid #eadbd1;
+    }
+
+    .brand {
+      font-family: "Playfair Display", serif;
+      font-size: 1.4rem;
+      color: var(--rose);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 22px;
+      flex-wrap: wrap;
+    }
+
+    .nav a { text-decoration: none; font-size: .9rem; }
+    .nav-links a:hover { color: var(--rose); }
+
+    .hero {
+      min-height: 88vh;
+      padding: 80px 20px;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      background:
+        linear-gradient(rgba(54, 37, 31, .32), rgba(54, 37, 31, .40)),
+        url("https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=2000&q=85")
+        center 48% / cover;
+      color: white;
+    }
+
+    .hero p { color: white; }
+    .hero h1 { margin: 16px 0; }
+    .hero .eyebrow { letter-spacing: 5px; text-transform: uppercase; font-size: .8rem; }
+
+    .hero-date {
+      display: inline-block;
+      border-top: 1px solid #ffffffa0;
+      border-bottom: 1px solid #ffffffa0;
+      padding: 12px 25px;
+      letter-spacing: 3px;
+    }
+
+    .button {
+      display: inline-block;
+      border: 0;
+      background: var(--rose);
+      color: white;
+      padding: 13px 25px;
+      border-radius: 3px;
+      text-decoration: none;
+      cursor: pointer;
+      font: inherit;
+      margin-top: 15px;
+      transition: transform .2s, background .2s;
+    }
+
+    .button:hover { background: #97575b; transform: translateY(-2px); }
+
+    section { padding: 85px 7%; scroll-margin-top: 75px; }
+
+    .section-heading { text-align: center; margin-bottom: 40px; }
+    .section-heading p { max-width: 600px; margin: 12px auto; }
+    .eyebrow { color: var(--rose); letter-spacing: 3px; font-size: .75rem; text-transform: uppercase; }
+
+    .intro { text-align: center; max-width: 760px; margin: auto; }
+    .flourish { color: var(--gold); font-size: 2rem; }
+
+    .countdown-section { background: #f3e4dc; text-align: center; }
+    .countdown {
+      display: flex;
+      justify-content: center;
+      gap: clamp(15px, 5vw, 55px);
+      flex-wrap: wrap;
+      margin-top: 30px;
+    }
+
+    .countdown strong {
+      display: block;
+      font-family: "Playfair Display", serif;
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 400;
+    }
+
+    .countdown span { font-size: .8rem; letter-spacing: 2px; text-transform: uppercase; }
+
+    .story-grid, .events-grid, .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 25px;
+      max-width: 1100px;
+      margin: auto;
+    }
+
+    .story-card, .event-card {
+      background: white;
+      padding: 30px;
+      text-align: center;
+      border: 1px solid #eee0d6;
+    }
+
+    .story-card h3, .event-card h3 { font-size: 1.8rem; }
+    .event-card .event-icon { font-size: 2rem; }
+    .event-card .time { color: var(--rose); font-weight: 600; }
+
+    .gallery-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+
+    .gallery-grid img {
+      width: 100%;
+      height: 330px;
+      object-fit: cover;
+      display: block;
+      border-radius: 3px;
+      transition: transform .3s;
+    }
+
+    .gallery-grid img:hover { transform: scale(1.02); }
+
+    .venue {
+      text-align: center;
+      background: #f3e4dc;
+    }
+
+    .venue-card {
+      max-width: 750px;
+      background: var(--cream);
+      padding: 35px;
+      margin: auto;
+    }
+
+    .rsvp-wrap { max-width: 650px; margin: auto; }
+
+    form { display: grid; gap: 17px; }
+
+    label { font-weight: 600; font-size: .9rem; }
+
+    input, select, textarea {
+      display: block;
+      width: 100%;
+      margin-top: 6px;
+      padding: 13px;
+      border: 1px solid #d9c9bd;
+      border-radius: 3px;
+      background: white;
+      color: var(--ink);
+      font: inherit;
+    }
+
+    input:focus, select:focus, textarea:focus {
+      outline: 2px solid var(--rose);
+      outline-offset: 2px;
+    }
+
+    .note { font-size: .85rem; }
+
+    footer {
+      text-align: center;
+      padding: 45px 20px;
+      background: #4b403a;
+      color: white;
+    }
+
+    footer p { color: #eee0d6; }
+    footer .brand { color: #edc5ba; }
+
+    @media (max-width: 700px) {
+      .nav { align-items: flex-start; flex-direction: column; }
+      .nav-links { gap: 12px; }
+      .hero { min-height: 75vh; }
+      section { padding: 65px 6%; }
+      .story-grid, .events-grid, .gallery-grid {
+        grid-template-columns: 1fr;
+      }
+      .gallery-grid img { height: 300px; }
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="nav">
+    <a class="brand" href="#home">H &amp; H</a>
+    <div class="nav-links">
+      <a href="#story">Our Story</a>
+      <a href="#events">Events</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#venue">Venue</a>
+      <a href="#rsvp">RSVP</a>
+    </div>
+  </nav>
+
+  <header class="hero" id="home">
+    <div>
+      <p class="eyebrow">Together with our families</p>
+      <p>Joyfully invite you to celebrate</p>
+      <h1>Himansu &amp; Harshal </h1>
+      <p class="hero-date" id="hero-date">14 December 2026</p>
+      <p>A beautiful beginning to our forever.</p>
+      <a class="button" href="#story">Explore Our Invitation</a>
+    </div>
+  </header>
+
+  <main>
+    <section id="story">
+      <div class="intro">
+        <span class="flourish">❦</span>
+        <p class="eyebrow">Two hearts, one journey</p>
+        <h2>Our Story</h2>
+        <p>
+          Two hearts, one new adventure. We’re tying the knot, and our favorite story wouldn't be 
+		  complete without you in it! Come celebrate love, laughter, and our happily ever after with us.
+        </p>
+      </div>
+
+      <div class="story-grid" style="margin-top: 35px;">
+        <article class="story-card">
+          <h3>The Bride</h3>
+          <p>Harshal</p>
+          <p>A heart full of dreams, laughter, and love.</p>
+        </article>
+        <article class="story-card">
+          <h3>The Groom</h3>
+          <p>Himansu</p>
+          <p>Her favorite person and forever adventure partner.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="countdown-section">
+      <p class="eyebrow">Save the date</p>
+      <h2>Counting Down to Forever</h2>
+      <p>Every moment brings us closer to our special day.</p>
+
+      <div class="countdown" aria-live="polite">
+        <div><strong id="days">--</strong><span>Days</span></div>
+        <div><strong id="hours">--</strong><span>Hours</span></div>
+        <div><strong id="minutes">--</strong><span>Minutes</span></div>
+        <div><strong id="seconds">--</strong><span>Seconds</span></div>
+      </div>
+      <p id="countdown-message"></p>
+    </section>
+
+    <section id="events">
+      <div class="section-heading">
+        <p class="eyebrow">Join our celebration</p>
+        <h2>Wedding Events</h2>
+        <p>We would be delighted to have you with us for these special moments.</p>
+      </div>
+
+      <div class="events-grid">
+        <article class="event-card">
+          <div class="event-icon">🌸</div>
+          <h3>Wedding Ceremony</h3>
+          <p class="time">14 December 2026 · 05:22 PM</p>
+          <p>Witness the beginning of our forever as we exchange our vows.</p>
+        </article>
+        <article class="event-card">
+          <div class="event-icon">✨</div>
+          <h3>Reception</h3>
+          <p class="time">14 December 2026 · 7:30 PM</p>
+          <p>An evening of food, music, laughter, and unforgettable memories.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="gallery">
+      <div class="section-heading">
+        <p class="eyebrow">Moments to remember</p>
+        <h2>Our Gallery</h2>
+        <p>A little glimpse of the love we can't wait to celebrate.</p>
+      </div>
+
+      <div class="gallery-grid">
+        <img
+          src="./images/pic8.jpeg"
+          alt="Romantic wedding celebration" loading="lazy">
+        <img
+          src="./images/pic6.jpeg"
+          alt="Wedding ceremony details" loading="lazy">
+        <img
+          src="./images/pic9.jpeg"
+          alt="Wedding celebration and decorations" loading="lazy">
+      </div>
+    </section>
+
+    <section class="venue" id="venue">
+      <div class="section-heading">
+        <p class="eyebrow">We saved you a seat</p>
+        <h2>Venue &amp; Details</h2>
+      </div>
+      <div class="venue-card">
+        <h3>Royal Garden Banquet Hall</h3>
+        <p>Madhuram lawns , Thane kasarvadavli , Mumbai, Maharashtra</p>
+        <p><strong>Wedding:</strong> 5:22 PM</p>
+        <p><strong>Reception:</strong> 7:30 PM</p>
+        <a
+          class="button"
+          href="https://www.google.com/maps/search/?api=1&query=Royal+Garden+Banquet+Hall+Mumbai"
+          target="_blank"
+          rel="noopener noreferrer">
+          Get Directions
+        </a>
+      </div>
+    </section>
+
+    <section id="rsvp">
+      <div class="section-heading">
+        <p class="eyebrow">Your presence is our present</p>
+        <h2>Kindly RSVP</h2>
+        <p>Please let us know if you can join our celebration.</p>
+      </div>
+
+      <div class="rsvp-wrap">
+        <form id="rsvp-form">
+          <label>
+            Your full name
+            <input name="guestName" type="text" placeholder="Enter your name" required maxlength="100">
+          </label>
+
+          <label>
+            Will you be attending?
+            <select name="attendance" required>
+              <option value="">Please select</option>
+              <option value="Joyfully accepts">Joyfully accepts</option>
+              <option value="Regretfully declines">Regretfully declines</option>
+            </select>
+          </label>
+
+          <label>
+            Number of guests (including you)
+            <select name="guests" required>
+              <option value="1">1 guest</option>
+              <option value="2">2 guests</option>
+              <option value="3">3 guests</option>
+              <option value="4">4 guests</option>
+              <option value="5">5 guests</option>
+            </select>
+          </label>
+
+          <label>
+            A little message (optional)
+            <textarea name="message" rows="3" maxlength="500" placeholder="Share your wishes..."></textarea>
+          </label>
+
+          <button class="button" type="submit">Send RSVP via WhatsApp</button>
+          <p class="note">
+            Your response will open in WhatsApp for you to send to the couple.
+            It is not submitted until you press Send in WhatsApp.
+          </p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="brand">Himansu &amp; Harshal</div>
+    <p>With love, we begin our forever.</p>
+    <p>14 December 2026 · Mumbai</p>
+    <p>Made with ♥ for our special day</p>
+  </footer>
+
+  <script>
+    // EDIT THESE SETTINGS FOR YOUR WEDDING
+    const weddingDate = "2026-12-14T10:00:00+05:30";
+
+    // Use the couple's WhatsApp number with country code.
+    // Example format for India: 919876543210
+    // Replace this placeholder with the real number.
+    const whatsappNumber = "8668870316";
+
+    // Countdown timer
+    const targetDate = new Date(weddingDate).getTime();
+    const countdownMessage = document.getElementById("countdown-message");
+
+    function updateCountdown() {
+      const now = Date.now();
+      const difference = targetDate - now;
+
+      if (Number.isNaN(targetDate)) {
+        countdownMessage.textContent = "Please check the wedding date in the code.";
+        return;
+      }
+
+      if (difference <= 0) {
+        ["days", "hours", "minutes", "seconds"].forEach(id => {
+          document.getElementById(id).textContent = "0";
+        });
+        countdownMessage.textContent = "Today marks the beginning of forever!";
+        return;
+      }
+
+      const days = Math.floor(difference / 86400000);
+      const hours = Math.floor((difference % 86400000) / 3600000);
+      const minutes = Math.floor((difference % 3600000) / 60000);
+      const seconds = Math.floor((difference % 60000) / 1000);
+
+      document.getElementById("days").textContent = days;
+      document.getElementById("hours").textContent = hours;
+      document.getElementById("minutes").textContent = minutes;
+      document.getElementById("seconds").textContent = seconds;
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+
+    // Display the wedding date from the same setting
+    document.getElementById("hero-date").textContent =
+      new Intl.DateTimeFormat("en-IN", {
+        day: "numeric",
+        month: "long",
+        year: "numeric",
+        timeZone: "Asia/Kolkata"
+      }).format(new Date(weddingDate));
+
+    // RSVP form: prepare a WhatsApp message
+    document.getElementById("rsvp-form").addEventListener("submit", function(event) {
+      event.preventDefault();
+
+      if (!/^[1-9]\d{7,14}$/.test(whatsappNumber)) {
+        alert("Please set the correct WhatsApp number in the JavaScript code.");
+        return;
+      }
+
+      const formData = new FormData(event.currentTarget);
+      const guestName = String(formData.get("guestName") || "").trim();
+      const attendance = String(formData.get("attendance") || "");
+      const guests = String(formData.get("guests") || "1");
+      const message = String(formData.get("message") || "").trim();
+
+      if (!guestName || !attendance) {
+        alert("Please enter your name and attendance response.");
+        return;
+      }
+
+      const whatsappMessage = [
+        "Wedding RSVP",
+        "",
+        "Name: " + guestName,
+        "Response: " + attendance,
+        "Number of guests: " + guests,
+        "Message: " + (message || "No additional message")
+      ].join("\n");
+
+      const whatsappURL =
+        "https://wa.me/" + whatsappNumber +
+        "?text=" + encodeURIComponent(whatsappMessage);
+
+      window.open(whatsappURL, "_blank", "noopener,noreferrer");
+    });
+  </script>
+</body>
+</html>
